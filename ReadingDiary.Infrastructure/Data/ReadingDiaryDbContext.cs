@@ -6,6 +6,8 @@ namespace ReadingDiary.Infrastructure.Data;
 
 public class ReadingDiaryDbContext : DbContext
 {
+    public DbSet<RoleEntity> Roles { get; set; }
+    public DbSet<StatusEntity> Statuses { get; set; }
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<BookEntity> Books { get; set; }
     public DbSet<ReviewEntity> Reviews { get; set; }
@@ -17,6 +19,8 @@ public class ReadingDiaryDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new RoleEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new StatusEntityConfiguration());
         modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
         modelBuilder.ApplyConfiguration(new BookEntityConfiguration());
         modelBuilder.ApplyConfiguration(new ReviewEntityConfiguration());
