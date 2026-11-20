@@ -12,19 +12,23 @@ public class BookInDiaryEntityConfiguration : IEntityTypeConfiguration<BookInDia
         builder.Property<Guid>("UserId");
         builder.Property<Guid>("BookId");
         builder.HasKey("UserId", "BookId");
-
-        builder.Property(x => x.Status)
-            .HasConversion<string>()
-            .HasMaxLength(20);
+        
+        builder.HasOne(x => x.Status)
+            .WithMany(x => x.DiaryEntries)
+            .HasForeignKey("StatusId")
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.User)
             .WithMany(x => x.DiaryEntries)
             .HasForeignKey("UserId")
+            .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(x => x.Book)
             .WithMany(x => x.DiaryEntries)
             .HasForeignKey("BookId")
+            .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
     }
 }
