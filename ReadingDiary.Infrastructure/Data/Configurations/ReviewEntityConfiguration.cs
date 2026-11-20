@@ -10,10 +10,7 @@ public class ReviewEntityConfiguration : IEntityTypeConfiguration<ReviewEntity>
     {
         builder.ToTable("reviews", t => t.HasCheckConstraint("CK_reviews_rating", "\"Rating\" BETWEEN 1 AND 5"));
         builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Text)
-            .HasMaxLength(2000);
-
+        
         builder.HasOne(x => x.User)
             .WithMany(x => x.Reviews)
             .HasForeignKey("UserId")
