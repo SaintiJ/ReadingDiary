@@ -1,5 +1,4 @@
 using ReadingDiary.Domain.Entities.Base;
-using ReadingDiary.Domain.Enums;
 
 namespace ReadingDiary.Domain.Entities;
 
