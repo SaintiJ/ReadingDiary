@@ -8,7 +8,7 @@ public class BookInDiaryEntityConfiguration : IEntityTypeConfiguration<BookInDia
 {
     public void Configure(EntityTypeBuilder<BookInDiaryEntity> builder)
     {
-        builder.ToTable("books_in_diary", t => t.HasCheckConstraint("CK_books_in_diary_finished", "\"FinishedAt\" IS NULL OR \"Status\" = 'Read'"));
+        builder.ToTable("books_in_diary");
         builder.Property<Guid>("UserId");
         builder.Property<Guid>("BookId");
         builder.HasKey("UserId", "BookId");
